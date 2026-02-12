@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+h1, h2 {
+  color: #e63946;
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.yes {
+  background: #e63946;
+  color: white;
+}
+
+.no {
+  background: #eee;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- QUESTION -->
+<div class="card" id="question">
+  <h1>Hey Love ❤️</h1>
+  <p>Every heartbeat of mine whispers your name…</p>
+  <h2>Will you be my Valentine? 💖</h2>
+  <button class="yes" onclick="showLove()">Yes 💘</button>
+  <button class="no" onmouseover="moveNo(this)">No 💔</button>
+</div>
+
+<!-- LOVE PAGE -->
+<div class="card hidden" id="love">
+  <h1>You said YES 😍</h1>
+  <p>This already made my day…</p>
+  <button class="yes" onclick="showMemories()">Want to see our memories? 📸</button>
+</div>
+
+<!-- SLIDESHOW -->
+<div class="card hidden" id="memories">
+  <h1>Our Memories 💞</h1>
+  <img id="slide" src="images/photo1.jpg">
+  <br>
+  <button class="yes" onclick="goMessage()">I have a message for you 💌</button>
+</div>
+
+<script>
+function moveNo(btn) {
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * 70 + "%";
+  btn.style.top = Math.random() * 70 + "%";
+}
+
+function showLove() {
+  question.classList.add("hidden");
+  love.classList.remove("hidden");
+}
+
+function showMemories() {
+  love.classList.add("hidden");
+  memories.classList.remove("hidden");
+  startSlideshow();
+}
+
+const images = [
+  "images/photo1.jpg",
+  "images/photo2.jpg",
+  "images/photo3.jpg",
+  "images/photo4.jpg",
+  "images/photo5.jpg"
+];
+
+let i = 0;
+function startSlideshow() {
+  setInterval(() => {
+    i = (i + 1) % images.length;
+    slide.src = images[i];
+  }, 2500);
+}
+
+function goMessage() {
+  window.location.href = "message.html";
+}
+</script>
+
+</body>
+</html>
